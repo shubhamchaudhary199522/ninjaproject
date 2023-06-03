@@ -54,7 +54,7 @@ module.exports.signIn = function(req, res){
    
 // }
 
-//sign in and create the session for user. 
+
 // module.exports.createSession = async function(req, res){
 //    //steps to authenticate
 //    //find the user
