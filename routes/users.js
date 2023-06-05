@@ -12,7 +12,7 @@ router.get('/sign-up', usersController.signUp);
 
 router.post('/create', usersController.create);
 
-router.post('/createSession', usersController.createSession)
+// router.post('/createSession', usersController.createSession)
 
 
 module.exports = router;

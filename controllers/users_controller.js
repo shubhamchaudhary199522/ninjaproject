@@ -35,24 +35,24 @@ module.exports.signIn = function(req, res){
    });
 }
 
-//get the sign up data. 
-// module.exports.create = async function(req, res){
-//    if (req.body.password != req.body.confirm_password){
-//       res.redirect('back');
-//    }
-//  try
-//      {
-//        const user = await User.findOne({email: req.body.email}).exec();
-//        if (!user){
-//          const newUser = await User.create(req.body);
-//          return res.redirect('/users/sign-in');
-//         } else 
-//         return res.redirect('back');
-//        } catch (err) {
-//          console.log('error in creating the user while signing-up', err);
-//        }
+// get the sign up data. 
+module.exports.create = async function(req, res){
+   if (req.body.password != req.body.confirm_password){
+      res.redirect('back');
+   }
+ try
+     {
+       const user = await User.findOne({email: req.body.email}).exec();
+       if (!user){
+         const newUser = await User.create(req.body);
+         return res.redirect('/users/sign-in');
+        } else 
+        return res.redirect('back');
+       } catch (err) {
+         console.log('error in creating the user while signing-up', err);
+       }
    
-// }
+ }
 
 //sign in and create the session for user. 
 // module.exports.createSession = async function(req, res){
