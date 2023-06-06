@@ -1,28 +1,37 @@
     const User = require('../models/user');
     
-    module.exports.profile = async function(req, res){
+    module.exports.profile = function(req, res){
     //  return res.end('<h1> user profile </h1>');  // this is without views.  
-    try {
-      if (req.cookies.user_id){
-         const user = await User.findById(req.cookies.user_id).exec();
-         if (user){
-                 return res.render('user_profile',{
-                   title: "user profile",
-                   user: user
-              })
-         } else{
-            return res.redirect('/users/sign-in');
-         } 
-      }
-    } catch (err) {
-      console.log('error in go to profile page', err);
-    }
+          return res.render('user_profile', {
+          title: 'User Profile'
+      });
+  
+   //  try {
+   //    if (req.cookies.user_id){
+   //       const user = await User.findById(req.cookies.user_id).exec();
+   //       if (user){
+   //               return res.render('user_profile',{
+   //                 title: "user profile",
+   //                 user: user
+   //            })
+   //       } else{
+   //          return res.redirect('/users/sign-in');
+   //       } 
+   //    }
+   //  } catch (err) {
+   //    console.log('error in go to profile page', err);
+   //  }
          
   
 }
 
 // render the sign up page. 
 module.exports.signUp = function(req, res){
+
+   if (req.isAuthenticated()){
+        return res.redirect('/users/profile')
+   }
+
    return res.render('user_sign_up',{
       title: 'Codeial | Sign Up'
    });
@@ -30,6 +39,9 @@ module.exports.signUp = function(req, res){
 
 //render the sign page.
 module.exports.signIn = function(req, res){
+   if (req.isAuthenticated()){
+      return res.redirect('/users/profile')
+ }
    return res.render('user_sign_in', {
       title: 'Codeial | Sign In'
    });
