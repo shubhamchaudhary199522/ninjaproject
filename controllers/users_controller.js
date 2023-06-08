@@ -1,7 +1,7 @@
     const User = require('../models/user');
     
     module.exports.profile = function(req, res){
-    //  return res.end('<h1> user profile </h1>');  // this is without views.  
+    //  return res.end('<h1> user profile </h1>');  // this is without views. 
           return res.render('user_profile', {
           title: 'User Profile'
       });
@@ -69,4 +69,13 @@ module.exports.create = async function(req, res){
 
 module.exports.createSession = function(req, res){
   res.redirect('/');
+  }
+
+  module.exports.destroySession = function(req, res){
+   req.logout((err) => {
+     if(err){
+      console.log('error in loging out', err);
+     }
+   });
+   res.redirect('/');
   }
